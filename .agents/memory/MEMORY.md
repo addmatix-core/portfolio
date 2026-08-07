@@ -1,0 +1,1 @@
+- [HXA content model](hxa-content-model.md) — HXA public copy is managed as one validated CMS document plus durable consultation requests.

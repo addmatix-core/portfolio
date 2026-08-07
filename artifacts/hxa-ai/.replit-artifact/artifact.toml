@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "HXA AI Transformation"
+description = "A premium enterprise AI transformation website for HXA, combining an immersive public marketing experience with an editable content management foundation for services, case studies, insights, FAQs, and contact requests."
+version = "1.0.0"
+id = "artifacts/hxa-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24859
+
+[services.development]
+run = "pnpm --filter @workspace/hxa-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/hxa-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/hxa-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24859"
+BASE_PATH = "/"

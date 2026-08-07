@@ -10,6 +10,12 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: content
+    description: Public website content
+  - name: inquiries
+    description: Contact and consultation inquiries
+  - name: admin
+    description: CMS administration
 paths:
   /healthz:
     get:
@@ -24,6 +30,77 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /site-content:
+    get:
+      operationId: getSiteContent
+      tags: [content]
+      summary: Get the published HXA website content
+      responses:
+        "200":
+          description: Published content for the marketing site
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteContent"
+  /contact-requests:
+    post:
+      operationId: createContactRequest
+      tags: [inquiries]
+      summary: Submit a consultation request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequestInput"
+      responses:
+        "201":
+          description: Consultation request received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactRequest"
+  /admin/overview:
+    get:
+      operationId: getAdminOverview
+      tags: [admin]
+      summary: Get CMS dashboard overview
+      responses:
+        "200":
+          description: CMS dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminOverview"
+  /admin/content:
+    get:
+      operationId: getAdminContent
+      tags: [admin]
+      summary: Get editable website content
+      responses:
+        "200":
+          description: Editable website content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteContent"
+    put:
+      operationId: updateAdminContent
+      tags: [admin]
+      summary: Replace editable website content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SiteContentInput"
+      responses:
+        "200":
+          description: Updated website content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteContent"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +110,187 @@ components:
           type: string
       required:
         - status
+    HeroContent:
+      type: object
+      properties:
+        eyebrow:
+          type: string
+        headline:
+          type: string
+        subheadline:
+          type: string
+        primaryCta:
+          type: string
+        secondaryCta:
+          type: string
+      required: [eyebrow, headline, subheadline, primaryCta, secondaryCta]
+    Stat:
+      type: object
+      properties:
+        value:
+          type: string
+        label:
+          type: string
+      required: [value, label]
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        outcome:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required: [id, title, description, outcome, tags]
+    CaseStudy:
+      type: object
+      properties:
+        id:
+          type: string
+        client:
+          type: string
+        industry:
+          type: string
+        title:
+          type: string
+        result:
+          type: string
+        metric:
+          type: string
+      required: [id, client, industry, title, result, metric]
+    Testimonial:
+      type: object
+      properties:
+        quote:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        company:
+          type: string
+      required: [quote, name, role, company]
+    Faq:
+      type: object
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+      required: [question, answer]
+    BlogPost:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+        title:
+          type: string
+        excerpt:
+          type: string
+        readTime:
+          type: string
+      required: [id, category, title, excerpt, readTime]
+    SiteContent:
+      type: object
+      properties:
+        hero:
+          $ref: "#/components/schemas/HeroContent"
+        intro:
+          type: string
+        stats:
+          type: array
+          items:
+            $ref: "#/components/schemas/Stat"
+        services:
+          type: array
+          items:
+            $ref: "#/components/schemas/Service"
+        caseStudies:
+          type: array
+          items:
+            $ref: "#/components/schemas/CaseStudy"
+        testimonials:
+          type: array
+          items:
+            $ref: "#/components/schemas/Testimonial"
+        faqs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Faq"
+        posts:
+          type: array
+          items:
+            $ref: "#/components/schemas/BlogPost"
+        techStack:
+          type: array
+          items:
+            type: string
+        process:
+          type: array
+          items:
+            type: string
+      required: [hero, intro, stats, services, caseStudies, testimonials, faqs, posts, techStack, process]
+    SiteContentInput:
+      allOf:
+        - $ref: "#/components/schemas/SiteContent"
+    ContactRequestInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+        company:
+          type: string
+        service:
+          type: string
+        message:
+          type: string
+          minLength: 1
+      required: [name, email, company, service, message]
+    ContactRequest:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        service:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+      required: [id, name, email, company, service, message, status, createdAt]
+    AdminOverview:
+      type: object
+      properties:
+        contentSections:
+          type: number
+        serviceCount:
+          type: number
+        caseStudyCount:
+          type: number
+        inquiryCount:
+          type: number
+        latestInquiries:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactRequest"
+      required: [contentSections, serviceCount, caseStudyCount, inquiryCount, latestInquiries]
 

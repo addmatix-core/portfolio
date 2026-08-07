@@ -1,0 +1,920 @@
+Act as a Senior UI/UX Designer, Creative Director, Brand Strategist, Full Stack Architect, and Senior React/Next.js Developer.
+
+Create a world-class premium AI company website.
+
+Company Name:
+HXA
+
+Brand Position:
+A premium AI Transformation company helping businesses automate, innovate, and scale using Artificial Intelligence.
+
+DO NOT make it look like a template.
+
+The website should feel like a Fortune 500 technology company.
+
+--------------------------------------------------------
+DESIGN REFERENCES
+--------------------------------------------------------
+
+Take approximately
+
+80% inspiration from
+https://zentroxtechnologies.com/
+
+20% inspiration from
+https://www.persistent.com/
+
+DO NOT COPY.
+
+Create a completely original design inspired by these websites.
+
+--------------------------------------------------------
+BRAND STYLE
+--------------------------------------------------------
+
+Primary Color
+
+#4286F5
+
+Use this as the main branding color.
+
+Create a premium blue gradient using this color.
+
+Suggested Palette
+
+Primary
+#4286F5
+
+Dark Background
+#071323
+
+Section Background
+#0D1B2A
+
+Accent
+#5B9BFF
+
+Light Blue
+#CFE2FF
+
+White
+#FFFFFF
+
+Text Grey
+#9AA5B1
+
+Border
+rgba(255,255,255,0.08)
+
+--------------------------------------------------------
+LOOK & FEEL
+--------------------------------------------------------
+
+Minimal
+
+Luxury
+
+Enterprise
+
+Premium
+
+Modern
+
+AI Focused
+
+Glassmorphism
+
+Smooth Animations
+
+Micro Interactions
+
+Large typography
+
+Lots of whitespace
+
+Rounded corners
+
+Soft shadows
+
+Dark mode with blue glow
+
+--------------------------------------------------------
+TYPOGRAPHY
+--------------------------------------------------------
+
+Use
+
+Space Grotesk
+
+Plus Jakarta Sans
+
+Inter
+
+Use bold headlines.
+
+Large hero typography.
+
+--------------------------------------------------------
+HEADER
+--------------------------------------------------------
+
+Transparent initially.
+
+Glass effect while scrolling.
+
+Sticky navigation.
+
+Logo
+
+HXA
+
+Menu
+
+Home
+
+Services
+
+Industries
+
+Case Studies
+
+About
+
+Blog
+
+Contact
+
+Right Side CTA
+
+"Book Free Consultation"
+
+--------------------------------------------------------
+HERO SECTION
+--------------------------------------------------------
+
+Full viewport.
+
+Animated background.
+
+AI particles.
+
+Glow effects.
+
+Gradient.
+
+Headline
+
+Transforming Businesses with Artificial Intelligence
+
+Subheadline
+
+From AI Strategy to Intelligent Automation, Software Engineering, Digital Growth and Enterprise Transformation.
+
+Buttons
+
+Book Consultation
+
+Explore Services
+
+Right Side
+
+Premium animated AI illustration
+
+Floating cards
+
+Graphs
+
+Automation
+
+Neural network animation
+
+Trusted by companies section.
+
+--------------------------------------------------------
+SECTION 2
+
+WHO WE ARE
+--------------------------------------------------------
+
+Large premium layout.
+
+Explain HXA.
+
+Mission
+
+Vision
+
+Core Values
+
+Animated counters
+
+Years
+
+Projects
+
+Clients
+
+Countries
+
+--------------------------------------------------------
+SERVICES
+--------------------------------------------------------
+
+Each service must have:
+
+Icon
+
+Description
+
+Hover animation
+
+CTA
+
+Learn More
+
+Open detailed page.
+
+Services
+
+1.
+AI Transformation
+
+Separate premium section.
+
+Sub-services
+
+AI Consulting
+
+AI Agents
+
+Automation
+
+Generative AI
+
+Business Intelligence
+
+AI Integration
+
+Interactive Demo
+
+--------------------------------------------------------
+
+2.
+Software Engineering
+
+Cards
+
+Enterprise Software
+
+SaaS Development
+
+CRM
+
+ERP
+
+API Development
+
+Custom Platforms
+
+--------------------------------------------------------
+
+3.
+Web Development
+
+Corporate Websites
+
+Enterprise Websites
+
+E-Commerce
+
+Web Applications
+
+Landing Pages
+
+CMS Development
+
+--------------------------------------------------------
+
+4.
+Mobile Apps
+
+Android
+
+iOS
+
+Flutter
+
+React Native
+
+Enterprise Apps
+
+--------------------------------------------------------
+
+5.
+Branding
+
+Brand Strategy
+
+Identity Design
+
+Logo Design
+
+Visual Systems
+
+UI Branding
+
+Marketing Assets
+
+--------------------------------------------------------
+
+6.
+Digital Growth
+
+Create four premium tabs.
+
+--------------------------------------------------------
+
+SEARCH
+
+Technical SEO
+
+Local SEO
+
+Enterprise SEO
+
+AI Search
+
+AEO
+
+GEO
+
+AI Search Optimization
+
+LLM Optimization
+
+--------------------------------------------------------
+
+EXPERIENCE
+
+SXO
+
+CRO
+
+UX Optimization
+
+Landing Page Optimization
+
+--------------------------------------------------------
+
+MARKETING
+
+Google Ads
+
+Meta Ads
+
+LinkedIn Ads
+
+Email Marketing
+
+Content Marketing
+
+--------------------------------------------------------
+
+ANALYTICS
+
+GA4
+
+Looker Studio
+
+Heatmaps
+
+Conversion Tracking
+
+Business Dashboards
+
+--------------------------------------------------------
+
+VERY IMPORTANT
+
+Each item must explain
+
+What it is
+
+Why businesses need it
+
+Business outcomes
+
+Benefits
+
+Expected ROI
+
+Who should use it
+
+--------------------------------------------------------
+PROCESS
+--------------------------------------------------------
+
+Beautiful timeline.
+
+Discovery
+
+Strategy
+
+Design
+
+Development
+
+Testing
+
+Deployment
+
+Optimization
+
+Growth
+
+--------------------------------------------------------
+CASE STUDIES
+--------------------------------------------------------
+
+Premium cards.
+
+Image
+
+Problem
+
+Solution
+
+Result
+
+Industry
+
+Technology Used
+
+--------------------------------------------------------
+WHY HXA
+--------------------------------------------------------
+
+Animated comparison cards.
+
+Traditional Agency
+
+vs
+
+HXA
+
+Highlight
+
+AI-first
+
+Fast Delivery
+
+Automation
+
+Innovation
+
+Premium Support
+
+--------------------------------------------------------
+TECHNOLOGY STACK
+--------------------------------------------------------
+
+Animated logos.
+
+React
+
+Next.js
+
+Node.js
+
+Python
+
+OpenAI
+
+Azure
+
+AWS
+
+Docker
+
+Kubernetes
+
+TensorFlow
+
+LangChain
+
+Pinecone
+
+Supabase
+
+Firebase
+
+MongoDB
+
+PostgreSQL
+
+--------------------------------------------------------
+TESTIMONIALS
+--------------------------------------------------------
+
+Modern carousel.
+
+Glass cards.
+
+--------------------------------------------------------
+FAQ
+--------------------------------------------------------
+
+Animated accordion.
+
+--------------------------------------------------------
+BLOG
+--------------------------------------------------------
+
+Premium blog cards.
+
+Featured article.
+
+Categories.
+
+Search.
+
+--------------------------------------------------------
+CONTACT
+--------------------------------------------------------
+
+Modern split layout.
+
+Left
+
+Information
+
+Right
+
+Form
+
+Name
+
+Email
+
+Phone
+
+Company
+
+Service
+
+Budget
+
+Message
+
+--------------------------------------------------------
+FOOTER
+--------------------------------------------------------
+
+Premium footer.
+
+Company
+
+Services
+
+Industries
+
+Resources
+
+Legal
+
+Newsletter
+
+Social Icons
+
+--------------------------------------------------------
+ANIMATIONS
+--------------------------------------------------------
+
+Framer Motion.
+
+GSAP style animations.
+
+Mouse parallax.
+
+Scroll reveal.
+
+Gradient glow.
+
+Floating icons.
+
+Cards lift on hover.
+
+Button ripple.
+
+Glass hover.
+
+Smooth page transitions.
+
+--------------------------------------------------------
+ADMIN PANEL
+--------------------------------------------------------
+
+Create a complete Admin Dashboard.
+
+Everything on the website must be editable from Admin Panel.
+
+No hardcoded content.
+
+Everything should come from database.
+
+--------------------------------------------------------
+
+ADMIN FEATURES
+
+Dashboard
+
+Analytics
+
+Pages
+
+Hero
+
+Services
+
+Sub-services
+
+Case Studies
+
+Testimonials
+
+Clients
+
+Blogs
+
+Categories
+
+Authors
+
+Media Library
+
+Menus
+
+SEO
+
+Forms
+
+Contact Requests
+
+Careers
+
+Jobs
+
+FAQs
+
+Pricing
+
+Newsletter
+
+Popup
+
+Announcements
+
+Website Settings
+
+Social Links
+
+Email Settings
+
+Google Analytics
+
+Search Console
+
+Meta Pixel
+
+Theme Colors
+
+Typography
+
+Logo
+
+Favicon
+
+Custom CSS
+
+Custom JS
+
+Backups
+
+Roles & Permissions
+
+--------------------------------------------------------
+
+BLOG CMS
+
+Create
+
+Edit
+
+Delete
+
+Draft
+
+Publish
+
+Rich Text Editor
+
+Image Upload
+
+SEO Title
+
+Meta Description
+
+Slug
+
+Tags
+
+Categories
+
+Author
+
+Featured Image
+
+--------------------------------------------------------
+
+SERVICES CMS
+
+Create
+
+Edit
+
+Delete
+
+Icons
+
+Images
+
+Descriptions
+
+Sub Services
+
+Pricing
+
+Buttons
+
+FAQs
+
+SEO
+
+--------------------------------------------------------
+
+CASE STUDY CMS
+
+Title
+
+Industry
+
+Challenge
+
+Solution
+
+Technology
+
+Images
+
+Results
+
+Metrics
+
+--------------------------------------------------------
+
+MEDIA LIBRARY
+
+Upload
+
+Delete
+
+Folders
+
+Images
+
+Videos
+
+PDF
+
+SVG
+
+--------------------------------------------------------
+
+SEO PANEL
+
+Per page SEO
+
+Schema
+
+Robots
+
+Canonical
+
+OpenGraph
+
+Twitter Cards
+
+Meta Tags
+
+Sitemap
+
+--------------------------------------------------------
+
+FORM MANAGEMENT
+
+Store submissions
+
+Export CSV
+
+Email Notifications
+
+Spam Protection
+
+--------------------------------------------------------
+
+TECH STACK
+--------------------------------------------------------
+
+Next.js 15
+
+React 19
+
+TypeScript
+
+Tailwind CSS
+
+ShadCN UI
+
+Framer Motion
+
+Node.js
+
+Express
+
+Prisma ORM
+
+PostgreSQL
+
+Redis
+
+Cloudinary
+
+JWT Authentication
+
+Role Based Access
+
+REST API
+
+Upload Manager
+
+--------------------------------------------------------
+
+PERFORMANCE
+
+95+ Lighthouse Score
+
+SEO 100
+
+Accessibility 100
+
+Responsive
+
+Lazy Loading
+
+Image Optimization
+
+Code Splitting
+
+SSR
+
+ISR
+
+--------------------------------------------------------
+
+RESPONSIVE
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+Ultra Wide
+
+--------------------------------------------------------
+
+FINAL GOAL
+
+The website should look like a premium global AI company worth over $500 million.
+
+Visitors should immediately trust the brand.
+
+The design should feel elegant, futuristic, luxurious, minimal, and enterprise-grade.
+
+Every section should have smooth premium animations.
+
+Every piece of content should be editable through the Admin Panel without changing code.
+
+Generate complete production-ready code with clean architecture, reusable components, proper folder structure, scalable backend, CMS integration, authentication, SEO optimization, and deployment-ready configuration.
