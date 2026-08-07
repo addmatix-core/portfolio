@@ -1,1 +1,2 @@
 - [HXA content model](hxa-content-model.md) — HXA public copy is managed as one validated CMS document plus durable consultation requests.
+- [Preview browser blocking](preview-browser-blocking.md) — McAfee WebAdvisor can block temporary Replit preview URLs even when the app and workflows are healthy.
