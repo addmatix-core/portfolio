@@ -7,7 +7,7 @@ export function BrandMark({ admin = false }: { admin?: boolean }) {
         <span className="absolute h-3 w-3 rounded-full bg-[#91c8ff] shadow-[0_0_14px_#4286f5]" />
         <span className="absolute h-6 w-6 rounded-full border border-[#72b4ff]/40 transition-transform duration-500 group-hover:rotate-90" />
       </span>
-      <span className="font-display text-lg font-bold tracking-[-.06em] text-[#e9f3ff]">HXA<span className="text-[#6eafff]">.</span></span>
+      <span className="font-display text-lg font-bold tracking-[-.06em] text-[#e9f3ff]">ADX<span className="text-[#6eafff]">.</span></span>
     </Link>
   );
 }

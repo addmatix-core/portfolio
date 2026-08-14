@@ -4,11 +4,11 @@ export const fallbackContent: SiteContent = {
   hero: {
     eyebrow: 'AI transformation partner',
     headline: 'Make intelligence operational.',
-    subheadline: 'HXA helps ambitious enterprise teams move from AI ambition to measurable advantage — with the strategy, systems, and operating model to make it stick.',
+    subheadline: 'AddMatix helps ambitious enterprise teams move from AI ambition to measurable advantage — with the strategy, systems, and operating model to make it stick.',
     primaryCta: 'Start a conversation',
     secondaryCta: 'Explore our work',
   },
-  intro: 'We work where business clarity meets technical possibility. From the first signal to scaled adoption, HXA turns complex AI programs into calm, compounding momentum.',
+  intro: 'We work where business clarity meets technical possibility. From the first signal to scaled adoption, AddMatix turns complex AI programs into calm, compounding momentum.',
   stats: [
     { value: '3.6×', label: 'average return on AI programs' },
     { value: '14 wk', label: 'to first production workflow' },
@@ -26,11 +26,11 @@ export const fallbackContent: SiteContent = {
     { id: 'meridian', client: 'Meridian Capital', industry: 'Financial services', title: 'A faster path to conviction', result: 'Research teams now synthesize thousands of signals into a shared point of view in minutes.', metric: '6.2× faster research cycles' },
   ],
   testimonials: [
-    { quote: 'HXA gave our ambition a shape the whole business could move behind. We are no longer piloting AI; we are operating with it.', name: 'Elena Marquez', role: 'Chief Digital Officer', company: 'Northstar Health' },
-    { quote: 'The difference was not just technical depth. It was the way HXA made a complex transformation feel navigable.', name: 'David Okonkwo', role: 'Group COO', company: 'Atlas Industrial' },
+    { quote: 'AddMatix gave our ambition a shape the whole business could move behind. We are no longer piloting AI; we are operating with it.', name: 'Elena Marquez', role: 'Chief Digital Officer', company: 'Northstar Health' },
+    { quote: 'The difference was not just technical depth. It was the way AddMatix made a complex transformation feel navigable.', name: 'David Okonkwo', role: 'Group COO', company: 'Atlas Industrial' },
   ],
   faqs: [
-    { question: 'When should we bring HXA in?', answer: 'Bring us in when an AI opportunity is important enough to need a cross-functional point of view. That may be before a strategy exists, during a platform decision, or when pilots need to become a portfolio.' },
+    { question: 'When should we bring AddMatix in?', answer: 'Bring us in when an AI opportunity is important enough to need a cross-functional point of view. That may be before a strategy exists, during a platform decision, or when pilots need to become a portfolio.' },
     { question: 'Do you build, or only advise?', answer: 'Both, in the right sequence. We leave behind working systems and a team that knows how to run them — not a deck that slowly loses relevance.' },
     { question: 'How do you approach responsible AI?', answer: 'Trust is designed into the operating model from the start: clear ownership, traceable data, human review where it matters, and controls that can evolve with the technology.' },
     { question: 'What does a first engagement look like?', answer: 'Usually a focused 3–4 week diagnostic with the leaders and teams closest to the work. We align on the value pool, surface the constraints, and define a credible first release.' },

@@ -49,7 +49,7 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
     eyebrow: "AI transformation partner",
     headline: "Make intelligence your unfair advantage.",
     subheadline:
-      "HXA turns ambitious AI strategy into measurable operating leverage — from intelligent automation to enterprise-grade products and growth systems.",
+      "AddMatix turns ambitious AI strategy into measurable operating leverage — from intelligent automation to enterprise-grade products and growth systems.",
     primaryCta: "Book a conversation",
     secondaryCta: "Explore our capabilities",
   },
@@ -110,7 +110,7 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
   testimonials: [
     {
       quote:
-        "HXA did not hand us a slide deck and disappear. They helped us make the change real.",
+        "AddMatix did not hand us a slide deck and disappear. They helped us make the change real.",
       name: "Maya Chen",
       role: "Chief Digital Officer",
       company: "Northstar Health",

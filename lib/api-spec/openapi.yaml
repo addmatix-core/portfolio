@@ -34,7 +34,7 @@ paths:
     get:
       operationId: getSiteContent
       tags: [content]
-      summary: Get the published HXA website content
+      summary: Get the published AddMatix website content
       responses:
         "200":
           description: Published content for the marketing site

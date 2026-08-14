@@ -1,6 +1,6 @@
-# HXA AI Transformation
+# AddMatix AI Transformation
 
-HXA is a premium AI transformation company website with an editable CMS foundation for enterprise services, case studies, insights, FAQs, and consultation requests.
+AddMatix is a premium AI transformation company website with an editable CMS foundation for enterprise services, case studies, insights, FAQs, and consultation requests.
 
 ## Run & Operate
 
@@ -22,23 +22,23 @@ HXA is a premium AI transformation company website with an editable CMS foundati
 
 ## Where things live
 
-- `artifacts/hxa-ai` — public HXA website and admin content studio
+- `artifacts/hxa-ai` — public AddMatix website and admin content studio
 - `artifacts/api-server/src/routes/hxa.ts` — content, CMS, and consultation API routes
 - `artifacts/api-server/src/lib/hxa-content.ts` — seeded HXA content and content shape
 - `lib/db/src/schema/hxa.ts` — PostgreSQL tables for site content and contact requests
-- `lib/api-spec/openapi.yaml` — source of truth for the HXA API contract
-- `artifacts/hxa-ai/src/index.css` — HXA visual system and motion utilities
+- `lib/api-spec/openapi.yaml` — source of truth for the AddMatix API contract
+- `artifacts/hxa-ai/src/index.css` — AddMatix visual system and motion utilities
 
 ## Architecture decisions
 
 - Public content is stored as one JSON document so the first CMS can edit structured sections without a migration for every copy change.
 - Consultation requests are stored separately as durable records and surfaced in the admin overview.
 - The frontend uses generated API hooks and query keys for all content reads and mutations.
-- The HXA visual system uses a midnight foundation, luminous blue accent, restrained glass surfaces, and typography-led hierarchy.
+- The AddMatix visual system uses a midnight foundation, luminous blue accent, restrained glass surfaces, and typography-led hierarchy.
 
 ## Product
 
-- Public marketing site for HXA's AI transformation, software engineering, and digital growth capabilities.
+- Public marketing site for AddMatix's AI transformation, software engineering, and digital growth capabilities.
 - Admin overview for content health and incoming consultation requests.
 - Admin content studio for publishing hero copy, capabilities, case studies, FAQs, and insights.
 - Consultation form backed by the API and PostgreSQL.
