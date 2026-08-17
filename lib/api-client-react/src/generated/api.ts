@@ -142,7 +142,7 @@ export const getGetSiteContentUrl = () => {
 }
 
 /**
- * @summary Get the published HXA website content
+ * @summary Get the published AddMatix website content
  */
 export const getSiteContent = async ( options?: Parameters<typeof customFetch>[1]): Promise<SiteContent> => {
 
@@ -189,7 +189,7 @@ export type GetSiteContentQueryError = ErrorType<unknown>
 
 
 /**
- * @summary Get the published HXA website content
+ * @summary Get the published AddMatix website content
  */
 
 export function useGetSiteContent<TData = Awaited<ReturnType<typeof getSiteContent>>, TError = ErrorType<unknown>>(

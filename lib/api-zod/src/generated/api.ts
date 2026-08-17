@@ -18,7 +18,7 @@ export const HealthCheckResponse = zod.object({
 
 
 /**
- * @summary Get the published HXA website content
+ * @summary Get the published AddMatix website content
  */
 export const GetSiteContentResponse = zod.object({
   "hero": zod.object({
@@ -38,7 +38,11 @@ export const GetSiteContentResponse = zod.object({
   "title": zod.string(),
   "description": zod.string(),
   "outcome": zod.string(),
-  "tags": zod.array(zod.string())
+  "tags": zod.array(zod.string()),
+  "detailGroups": zod.array(zod.object({
+  "title": zod.string(),
+  "items": zod.array(zod.string())
+})).optional()
 })),
   "caseStudies": zod.array(zod.object({
   "id": zod.string(),
@@ -139,7 +143,11 @@ export const GetAdminContentResponse = zod.object({
   "title": zod.string(),
   "description": zod.string(),
   "outcome": zod.string(),
-  "tags": zod.array(zod.string())
+  "tags": zod.array(zod.string()),
+  "detailGroups": zod.array(zod.object({
+  "title": zod.string(),
+  "items": zod.array(zod.string())
+})).optional()
 })),
   "caseStudies": zod.array(zod.object({
   "id": zod.string(),
@@ -192,7 +200,11 @@ export const UpdateAdminContentBody = zod.object({
   "title": zod.string(),
   "description": zod.string(),
   "outcome": zod.string(),
-  "tags": zod.array(zod.string())
+  "tags": zod.array(zod.string()),
+  "detailGroups": zod.array(zod.object({
+  "title": zod.string(),
+  "items": zod.array(zod.string())
+})).optional()
 })),
   "caseStudies": zod.array(zod.object({
   "id": zod.string(),
@@ -241,7 +253,11 @@ export const UpdateAdminContentResponse = zod.object({
   "title": zod.string(),
   "description": zod.string(),
   "outcome": zod.string(),
-  "tags": zod.array(zod.string())
+  "tags": zod.array(zod.string()),
+  "detailGroups": zod.array(zod.object({
+  "title": zod.string(),
+  "items": zod.array(zod.string())
+})).optional()
 })),
   "caseStudies": zod.array(zod.object({
   "id": zod.string(),

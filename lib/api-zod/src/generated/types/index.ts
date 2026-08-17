@@ -15,6 +15,7 @@ export * from './faq';
 export * from './healthStatus';
 export * from './heroContent';
 export * from './service';
+export * from './serviceDetailGroup';
 export * from './siteContent';
 export * from './siteContentInput';
 export * from './stat';

@@ -132,6 +132,16 @@ components:
         label:
           type: string
       required: [value, label]
+    ServiceDetailGroup:
+      type: object
+      properties:
+        title:
+          type: string
+        items:
+          type: array
+          items:
+            type: string
+      required: [title, items]
     Service:
       type: object
       properties:
@@ -147,6 +157,10 @@ components:
           type: array
           items:
             type: string
+        detailGroups:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceDetailGroup"
       required: [id, title, description, outcome, tags]
     CaseStudy:
       type: object

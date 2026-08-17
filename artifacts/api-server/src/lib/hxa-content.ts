@@ -17,6 +17,7 @@ export type HxaContent = {
     description: string;
     outcome: string;
     tags: string[];
+    detailGroups?: Array<{ title: string; items: string[] }>;
   }>;
   caseStudies: Array<{
     id: string;
@@ -69,6 +70,20 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
         "Turn AI potential into a practical operating system for your business.",
       outcome: "From first use case to scaled intelligence.",
       tags: ["AI strategy", "Agents", "Automation"],
+      detailGroups: [
+        {
+          title: "Capabilities",
+          items: [
+            "AI Consulting",
+            "AI Agents",
+            "Automation",
+            "Generative AI",
+            "Business Intelligence",
+            "AI Integration",
+            "Interactive Demo",
+          ],
+        },
+      ],
     },
     {
       id: "software-engineering",
@@ -77,6 +92,43 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
         "Build resilient products and platforms that become a compounding advantage.",
       outcome: "Enterprise systems made ready for what is next.",
       tags: ["Platforms", "SaaS", "APIs"],
+      detailGroups: [
+        {
+          title: "Software Development",
+          items: [
+            "Enterprise Software",
+            "SaaS",
+            "CRM",
+            "ERP",
+            "API Development",
+            "Custom Platforms",
+            "Web Development",
+          ],
+        },
+        {
+          title: "Web & App Delivery",
+          items: [
+            "Corporate",
+            "Enterprise",
+            "E-commerce",
+            "Web Applications",
+            "Mobile Apps",
+            "Android",
+            "iOS",
+          ],
+        },
+        {
+          title: "Branding",
+          items: [
+            "Brand Strategy",
+            "Identity",
+            "Logo",
+            "Visual System",
+            "UI Brand Design",
+            "Marketing Assets",
+          ],
+        },
+      ],
     },
     {
       id: "digital-growth",
@@ -85,6 +137,31 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
         "Connect experience, experimentation, and insight to unlock durable growth.",
       outcome: "Clearer signals. Faster learning. Better conversion.",
       tags: ["SEO", "Experience", "Analytics"],
+      detailGroups: [
+        {
+          title: "Search",
+          items: ["SEO", "Technical SEO", "Local SEO", "Enterprise SEO"],
+        },
+        {
+          title: "AI Search",
+          items: ["AEO", "GEO", "AI Search Optimization", "LLM Optimization"],
+        },
+        {
+          title: "Experience",
+          items: ["SXO", "CRO", "UX Optimization", "Landing Page Optimization"],
+        },
+        {
+          title: "Marketing",
+          items: [
+            "Google Ads",
+            "Meta Ads",
+            "LinkedIn Ads",
+            "Email Marketing",
+            "Content Marketing",
+            "Analytics",
+          ],
+        },
+      ],
     },
   ],
   caseStudies: [

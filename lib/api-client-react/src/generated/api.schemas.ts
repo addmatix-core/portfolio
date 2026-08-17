@@ -22,12 +22,18 @@ export interface Stat {
   label: string;
 }
 
+export interface ServiceDetailGroup {
+  title: string;
+  items: string[];
+}
+
 export interface Service {
   id: string;
   title: string;
   description: string;
   outcome: string;
   tags: string[];
+  detailGroups?: ServiceDetailGroup[];
 }
 
 export interface CaseStudy {

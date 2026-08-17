@@ -5,6 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { ServiceDetailGroup } from './serviceDetailGroup';
 
 export interface Service {
   id: string;
@@ -12,4 +13,5 @@ export interface Service {
   description: string;
   outcome: string;
   tags: string[];
+  detailGroups?: ServiceDetailGroup[];
 }
