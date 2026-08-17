@@ -5,6 +5,8 @@ import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import Home from '@/pages/Home';
 import ServiceDetailPage from '@/pages/ServiceDetailPage';
+import ProcessDetailPage from '@/pages/ProcessDetailPage';
+import InsightDetailPage from '@/pages/InsightDetailPage';
 import Admin from '@/pages/Admin';
 import AdminContent from '@/pages/AdminContent';
 
@@ -15,6 +17,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/services/:serviceId">{(params) => <ServiceDetailPage serviceId={params.serviceId} />}</Route>
+      <Route path="/process/:stepId">{(params) => <ProcessDetailPage stepId={params.stepId} />}</Route>
+      <Route path="/insights/:postId">{(params) => <InsightDetailPage postId={params.postId} />}</Route>
       <Route path="/admin" component={Admin} />
       <Route path="/admin/content" component={AdminContent} />
       <Route component={NotFound} />
