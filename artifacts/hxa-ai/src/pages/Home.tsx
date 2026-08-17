@@ -1,7 +1,6 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Clock3, ExternalLink, Layers3, Mail, MoveUpRight, Orbit, Send, ShieldCheck, Zap } from 'lucide-react';
 import { useMemo, useState, type FormEvent } from 'react';
 import { getGetSiteContentQueryKey, useCreateContactRequest, useGetSiteContent } from '@workspace/api-client-react';
-import { Link } from 'wouter';
 import { fallbackContent } from '@/lib/content';
 import SiteSkeleton from './SiteSkeleton';
 import { PublicNav } from '@/components/PublicNav';
@@ -63,7 +62,6 @@ export default function Home() {
   const content = query.data ?? fallbackContent;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeCase, setActiveCase] = useState(0);
-  const hasRemote = Boolean(query.data);
   const services = useMemo(() => content.services.map((service) => service.title), [content.services]);
   if (query.isLoading && !query.data) return <SiteSkeleton />;
   return <div className="hxa-noise min-h-[100dvh] overflow-hidden bg-[#08101f] text-[#e9f3ff]">
@@ -107,7 +105,6 @@ export default function Home() {
 
       <section id="contact" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-36"><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><div><div className="eyebrow">Make the next move</div><h2 className="mt-6 max-w-md font-display text-5xl leading-[1.02] tracking-[-.065em] text-[#eaf4ff] sm:text-6xl">Have a signal worth following?</h2><p className="mt-6 max-w-sm text-base leading-7 text-[#90a5bf]">Tell us where you are headed. We will bring a point of view, not a pitch.</p><div className="mt-10 flex items-center gap-3 text-sm text-[#9eb5d0]"><Mail className="h-4 w-4 text-[#6eb0fc]" />hello@addmatix.ai</div></div><ContactForm services={services} /></div></section>
     </main>
-    <footer className="border-t border-[#42618a]/15"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-8 sm:flex-row sm:items-center lg:px-8"><div><span className="font-display text-lg font-bold tracking-[-.06em]">ADX<span className="text-[#6eafff]">.</span></span><p className="mt-2 text-xs text-[#6f86a4]">Intelligence, made operational.</p></div><div className="flex items-center gap-6 text-xs text-[#7087a3]"><span>© {new Date().getFullYear()} AddMatix</span><a href="#contact" className="hover:text-[#b8d9fa]">Contact</a><Link href="/admin" data-testid="link-footer-admin" className="hover:text-[#b8d9fa]">CMS access</Link></div></div></footer>
-    {!hasRemote && <div className="fixed bottom-4 left-4 z-20 rounded-full border border-[#7da9da]/35 bg-[#162b49]/90 px-3 py-1.5 text-[10px] uppercase tracking-[.14em] text-[#9ab9da] backdrop-blur-md">Preview content</div>}
+    <footer className="border-t border-[#42618a]/15"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-8 sm:flex-row sm:items-center lg:px-8"><div><span className="font-display text-lg font-bold tracking-[-.06em]">ADX<span className="text-[#6eafff]">.</span></span><p className="mt-2 text-xs text-[#6f86a4]">Intelligence, made operational.</p></div><div className="flex items-center gap-6 text-xs text-[#7087a3]"><span>© {new Date().getFullYear()} AddMatix</span><a href="#contact" className="hover:text-[#b8d9fa]">Contact</a></div></div></footer>
   </div>;
 }
