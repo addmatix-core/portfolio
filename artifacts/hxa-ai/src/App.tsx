@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import Home from '@/pages/Home';
+import ServiceDetailPage from '@/pages/ServiceDetailPage';
 import Admin from '@/pages/Admin';
 import AdminContent from '@/pages/AdminContent';
 
@@ -13,6 +14,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/services/:serviceId">{(params) => <ServiceDetailPage serviceId={params.serviceId} />}</Route>
       <Route path="/admin" component={Admin} />
       <Route path="/admin/content" component={AdminContent} />
       <Route component={NotFound} />

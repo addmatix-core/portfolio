@@ -1,9 +1,10 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Clock3, ExternalLink, Layers3, Mail, MoveUpRight, Orbit, Send, ShieldCheck, Zap } from 'lucide-react';
 import { useMemo, useState, type FormEvent } from 'react';
-import { getGetSiteContentQueryKey, useCreateContactRequest, useGetSiteContent, type SiteContent } from '@workspace/api-client-react';
+import { getGetSiteContentQueryKey, useCreateContactRequest, useGetSiteContent } from '@workspace/api-client-react';
 import { fallbackContent } from '@/lib/content';
 import SiteSkeleton from './SiteSkeleton';
 import { PublicNav } from '@/components/PublicNav';
+import { Link } from 'wouter';
 
 function OrbitalVisual() {
   return <div className="relative mx-auto aspect-square w-full max-w-[580px]">
@@ -31,22 +32,6 @@ function SectionHeading({ eyebrow, title, body, light = false }: { eyebrow: stri
     <div className="eyebrow mb-5">{eyebrow}</div>
     <h2 className={`font-display text-4xl font-medium leading-[1.08] tracking-[-.055em] sm:text-5xl lg:text-6xl ${light ? 'text-[#071226]' : 'text-[#e9f3ff]'}`}>{title}</h2>
     {body && <p className={`mt-6 max-w-2xl text-base leading-7 ${light ? 'text-[#526985]' : 'text-[#91a5bd]'}`}>{body}</p>}
-  </div>;
-}
-
-function ServiceDetails({ service }: { service: SiteContent['services'][number] }) {
-  const groups = service.detailGroups ?? [];
-  if (!groups.length) return null;
-  return <div className="mt-6 border-t border-[#456485]/30 pt-6">
-    <div className="mb-4 text-[10px] font-semibold uppercase tracking-[.16em] text-[#6faef2]">Explore this service</div>
-    <div className={`grid gap-5 ${groups.length > 1 ? 'sm:grid-cols-2' : ''}`}>
-      {groups.map((group) => <div key={group.title}>
-        <h4 className="mb-3 font-display text-base tracking-[-.02em] text-[#dcecff]">{group.title}</h4>
-        <ul className="space-y-2">
-          {group.items.map((item) => <li key={item} className="flex items-start gap-2 text-sm leading-5 text-[#8fa8c4]"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#6faef2]" />{item}</li>)}
-        </ul>
-      </div>)}
-    </div>
   </div>;
 }
 
@@ -78,7 +63,6 @@ export default function Home() {
   const content = query.data ?? fallbackContent;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeCase, setActiveCase] = useState(0);
-  const [expandedService, setExpandedService] = useState<string | null>(null);
   const services = useMemo(() => content.services.map((service) => service.title), [content.services]);
   if (query.isLoading && !query.data) return <SiteSkeleton />;
   return <div className="hxa-noise min-h-[100dvh] overflow-hidden bg-[#08101f] text-[#e9f3ff]">
@@ -104,7 +88,7 @@ export default function Home() {
 
       <section className="border-y border-[#42618a]/15 bg-[#0d192b]/70"><div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">{content.stats.map((stat, index) => <div key={stat.label} data-testid={`stat-${index}`} className={`border-[#42618a]/15 px-6 py-8 lg:px-8 lg:py-10 ${index < 2 ? 'border-r' : ''} ${index < 2 ? 'border-b lg:border-b-0' : ''} ${index === 2 ? 'border-r lg:border-r' : ''}`}><div className="font-display text-3xl tracking-[-.06em] text-[#e5f1ff] sm:text-4xl">{stat.value}</div><div className="mt-2 max-w-[150px] text-xs leading-5 text-[#8298b3]">{stat.label}</div></div>)}</div></section>
 
-      <section id="capabilities" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-36"><SectionHeading eyebrow="Our services" title="Build the system behind your next move." body="Explore the focused capabilities that take an idea from first signal to durable business advantage." /><div className="mt-16 grid items-start gap-4 lg:grid-cols-3">{content.services.map((service, index) => { const isExpanded = expandedService === service.id; return <article key={service.id} data-testid={`card-service-${service.id}`} className={`group relative overflow-hidden rounded-2xl border bg-[#0d192b]/70 p-6 transition-all duration-500 sm:p-8 ${isExpanded ? 'border-[#6a9bd7]/75 bg-[#12233d] shadow-[0_18px_60px_rgba(24,79,157,.2)]' : 'border-[#456485]/35 hover:-translate-y-1 hover:border-[#6a9bd7]/65 hover:bg-[#12233d]'}`}><button type="button" onClick={() => setExpandedService(isExpanded ? null : service.id)} aria-expanded={isExpanded} aria-controls={`service-details-${service.id}`} data-testid={`button-service-${service.id}`} className="block w-full text-left"><div className="mb-20 flex items-start justify-between"><span className="font-mono text-xs text-[#6da7f7]">0{index + 1}</span><div className="flex items-center gap-3"><span className="text-[10px] uppercase tracking-[.12em] text-[#708caf]">{isExpanded ? 'Close' : 'Details'}</span><ChevronDown className={`h-5 w-5 text-[#607d9f] transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#8cc4ff]' : 'group-hover:text-[#8cc4ff]'}`} /></div></div><h3 className="font-display text-2xl tracking-[-.045em] text-[#e4f1ff]">{service.title}</h3><p className="mt-4 min-h-[72px] text-sm leading-6 text-[#8fa4bd]">{service.description}</p><div className="my-6 h-px bg-[#456485]/30" /><p className="text-sm leading-6 text-[#b7d0eb]">{service.outcome}</p><div className="mt-6 flex flex-wrap gap-2">{service.tags.map((tag) => <span key={tag} className="rounded-full border border-[#4f7199]/40 px-2.5 py-1 text-[10px] uppercase tracking-[.1em] text-[#7896b8]">{tag}</span>)}</div></button>{isExpanded && <div id={`service-details-${service.id}`}><ServiceDetails service={service} /></div>}</article>; })}</div></section>
+      <section id="capabilities" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-36"><SectionHeading eyebrow="Our services" title="Build the system behind your next move." body="Explore the focused capabilities that take an idea from first signal to durable business advantage." /><div className="mt-16 grid items-start gap-4 lg:grid-cols-3">{content.services.map((service, index) => <article key={service.id} data-testid={`card-service-${service.id}`} className="group relative overflow-hidden rounded-2xl border border-[#456485]/35 bg-[#0d192b]/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#6a9bd7]/65 hover:bg-[#12233d] sm:p-8"><Link href={`/services/${service.id}`} data-testid={`button-service-${service.id}`} className="block text-left"><div className="mb-20 flex items-start justify-between"><span className="font-mono text-xs text-[#6da7f7]">0{index + 1}</span><div className="flex items-center gap-3"><span className="text-[10px] uppercase tracking-[.12em] text-[#708caf]">View details</span><ArrowUpRight className="h-5 w-5 text-[#607d9f] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#8cc4ff]" /></div></div><h3 className="font-display text-2xl tracking-[-.045em] text-[#e4f1ff]">{service.title}</h3><p className="mt-4 min-h-[72px] text-sm leading-6 text-[#8fa4bd]">{service.description}</p><div className="my-6 h-px bg-[#456485]/30" /><p className="text-sm leading-6 text-[#b7d0eb]">{service.outcome}</p><div className="mt-6 flex flex-wrap gap-2">{service.tags.map((tag) => <span key={tag} className="rounded-full border border-[#4f7199]/40 px-2.5 py-1 text-[10px] uppercase tracking-[.1em] text-[#7896b8]">{tag}</span>)}</div></Link></article>)}</div></section>
 
       <section className="relative overflow-hidden bg-[#dcecff] px-6 py-24 text-[#081a36] lg:px-8 lg:py-32"><div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_80%_40%,rgba(66,134,245,.22),transparent_52%)]" /><div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[.8fr_1.2fr]"><SectionHeading light eyebrow="How change takes hold" title="A rhythm built for momentum." body="Transformation does not happen in a straight line. Ours is a deliberate loop: understand deeply, prove quickly, scale responsibly." /><div className="space-y-0">{content.process.map((step, index) => <div key={step} className="group flex items-center gap-5 border-t border-[#7798bd]/35 py-6 last:border-b"><span className="font-mono text-xs text-[#4286f5]">0{index + 1}</span><span className="font-display text-2xl tracking-[-.04em] transition-transform group-hover:translate-x-2 sm:text-3xl">{step}</span><ArrowRight className="ml-auto h-5 w-5 text-[#6f91ba] transition-transform group-hover:translate-x-2" /></div>)}</div></div></section>
 
