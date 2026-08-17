@@ -4,6 +4,7 @@ import { getGetSiteContentQueryKey, useCreateContactRequest, useGetSiteContent }
 import { fallbackContent } from '@/lib/content';
 import SiteSkeleton from './SiteSkeleton';
 import { PublicNav } from '@/components/PublicNav';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 function OrbitalVisual() {
   return <div className="relative mx-auto aspect-square w-full max-w-[580px]">
@@ -105,6 +106,6 @@ export default function Home() {
 
       <section id="contact" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-36"><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><div><div className="eyebrow">Make the next move</div><h2 className="mt-6 max-w-md font-display text-5xl leading-[1.02] tracking-[-.065em] text-[#eaf4ff] sm:text-6xl">Have a signal worth following?</h2><p className="mt-6 max-w-sm text-base leading-7 text-[#90a5bf]">Tell us where you are headed. We will bring a point of view, not a pitch.</p><div className="mt-10 flex items-center gap-3 text-sm text-[#9eb5d0]"><Mail className="h-4 w-4 text-[#6eb0fc]" />hello@addmatix.ai</div></div><ContactForm services={services} /></div></section>
     </main>
-    <footer className="border-t border-[#42618a]/15"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-8 sm:flex-row sm:items-center lg:px-8"><div><span className="font-display text-lg font-bold tracking-[-.06em]">ADX<span className="text-[#6eafff]">.</span></span><p className="mt-2 text-xs text-[#6f86a4]">Intelligence, made operational.</p></div><div className="flex items-center gap-6 text-xs text-[#7087a3]"><span>© {new Date().getFullYear()} AddMatix</span><a href="#contact" className="hover:text-[#b8d9fa]">Contact</a></div></div></footer>
+     <footer className="border-t border-[#42618a]/15"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-8 sm:flex-row sm:items-center lg:px-8"><div><span className="font-display text-lg font-bold tracking-[-.06em]">ADX<span className="text-[#6eafff]">.</span></span><p className="mt-2 text-xs text-[#6f86a4]">Intelligence, made operational.</p></div><div className="flex flex-wrap items-center gap-4 text-xs text-[#7087a3]"><WhatsAppButton label="WhatsApp" compact /><span>© {new Date().getFullYear()} AddMatix</span><a href="#contact" className="hover:text-[#b8d9fa]">Contact</a></div></div></footer>
   </div>;
 }
