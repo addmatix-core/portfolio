@@ -10,6 +10,7 @@ import InsightDetailPage from '@/pages/InsightDetailPage';
 import Admin from '@/pages/Admin';
 import AdminContent from '@/pages/AdminContent';
 import { AdminGate } from '@/components/AdminGate';
+import { SiteFontProvider } from '@/components/SiteFontProvider';
 
 const queryClient = new QueryClient();
 
@@ -31,9 +32,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <SiteFontProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <Router />
         </WouterRouter>
+        </SiteFontProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

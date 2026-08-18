@@ -1,6 +1,7 @@
 import type { SiteContent } from '@workspace/api-client-react';
 
 export const fallbackContent: SiteContent = {
+  fontFamily: 'space-grotesk',
   hero: {
     eyebrow: 'AI transformation partner',
     headline: 'Make intelligence operational.',

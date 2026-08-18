@@ -14,6 +14,7 @@ import type { Stat } from './stat';
 import type { Testimonial } from './testimonial';
 
 export interface SiteContent {
+  fontFamily: string;
   hero: HeroContent;
   intro: string;
   stats: Stat[];

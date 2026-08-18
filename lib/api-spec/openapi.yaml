@@ -215,6 +215,8 @@ components:
     SiteContent:
       type: object
       properties:
+        fontFamily:
+          type: string
         hero:
           $ref: "#/components/schemas/HeroContent"
         intro:
@@ -251,7 +253,7 @@ components:
           type: array
           items:
             type: string
-      required: [hero, intro, stats, services, caseStudies, testimonials, faqs, posts, techStack, process]
+      required: [fontFamily, hero, intro, stats, services, caseStudies, testimonials, faqs, posts, techStack, process]
     SiteContentInput:
       allOf:
         - $ref: "#/components/schemas/SiteContent"

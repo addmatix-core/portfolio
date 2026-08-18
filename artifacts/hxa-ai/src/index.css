@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&family=Cabin:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Fira+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Teko:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&family=Work+Sans:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -28,6 +28,7 @@
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --font-sans: var(--app-font-sans);
   --font-mono: var(--app-font-mono);
+  --font-display: var(--app-font-display);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -58,6 +59,7 @@
   --destructive-foreground: 215 38% 92%;
   --app-font-sans: 'Plus Jakarta Sans', sans-serif;
   --app-font-mono: 'Space Grotesk', monospace;
+  --app-font-display: 'Space Grotesk', sans-serif;
   --radius: 1rem;
   --shadow-sm: 0 8px 24px rgba(5, 13, 31, .22);
   --shadow-lg: 0 24px 70px rgba(4, 13, 33, .35);
@@ -81,7 +83,7 @@
 }
 
 @layer utilities {
-  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-display { font-family: var(--app-font-display); }
   .text-balance { text-wrap: balance; }
   .glass {
     background: linear-gradient(135deg, rgba(28, 43, 70, .48), rgba(12, 21, 41, .36));

@@ -66,6 +66,7 @@ export interface BlogPost {
 }
 
 export interface SiteContent {
+  fontFamily: string;
   hero: HeroContent;
   intro: string;
   stats: Stat[];

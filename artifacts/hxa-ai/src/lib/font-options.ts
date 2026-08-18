@@ -1,0 +1,45 @@
+export const FONT_OPTIONS = [
+  { value: 'inter', label: 'Inter', css: "'Inter', sans-serif" },
+  { value: 'roboto', label: 'Roboto', css: "'Roboto', sans-serif" },
+  { value: 'open-sans', label: 'Open Sans', css: "'Open Sans', sans-serif" },
+  { value: 'lato', label: 'Lato', css: "'Lato', sans-serif" },
+  { value: 'montserrat', label: 'Montserrat', css: "'Montserrat', sans-serif" },
+  { value: 'poppins', label: 'Poppins', css: "'Poppins', sans-serif" },
+  { value: 'nunito-sans', label: 'Nunito Sans', css: "'Nunito Sans', sans-serif" },
+  { value: 'raleway', label: 'Raleway', css: "'Raleway', sans-serif" },
+  { value: 'merriweather', label: 'Merriweather', css: "'Merriweather', serif" },
+  { value: 'playfair-display', label: 'Playfair Display', css: "'Playfair Display', serif" },
+  { value: 'dm-sans', label: 'DM Sans', css: "'DM Sans', sans-serif" },
+  { value: 'manrope', label: 'Manrope', css: "'Manrope', sans-serif" },
+  { value: 'outfit', label: 'Outfit', css: "'Outfit', sans-serif" },
+  { value: 'sora', label: 'Sora', css: "'Sora', sans-serif" },
+  { value: 'space-grotesk', label: 'Space Grotesk', css: "'Space Grotesk', sans-serif" },
+  { value: 'plus-jakarta-sans', label: 'Plus Jakarta Sans', css: "'Plus Jakarta Sans', sans-serif" },
+  { value: 'work-sans', label: 'Work Sans', css: "'Work Sans', sans-serif" },
+  { value: 'rubik', label: 'Rubik', css: "'Rubik', sans-serif" },
+  { value: 'quicksand', label: 'Quicksand', css: "'Quicksand', sans-serif" },
+  { value: 'cabin', label: 'Cabin', css: "'Cabin', sans-serif" },
+  { value: 'barlow', label: 'Barlow', css: "'Barlow', sans-serif" },
+  { value: 'barlow-condensed', label: 'Barlow Condensed', css: "'Barlow Condensed', sans-serif" },
+  { value: 'oswald', label: 'Oswald', css: "'Oswald', sans-serif" },
+  { value: 'bebas-neue', label: 'Bebas Neue', css: "'Bebas Neue', sans-serif" },
+  { value: 'archivo', label: 'Archivo', css: "'Archivo', sans-serif" },
+  { value: 'ibm-plex-sans', label: 'IBM Plex Sans', css: "'IBM Plex Sans', sans-serif" },
+  { value: 'ibm-plex-serif', label: 'IBM Plex Serif', css: "'IBM Plex Serif', serif" },
+  { value: 'source-sans-3', label: 'Source Sans 3', css: "'Source Sans 3', sans-serif" },
+  { value: 'source-serif-4', label: 'Source Serif 4', css: "'Source Serif 4', serif" },
+  { value: 'libre-baskerville', label: 'Libre Baskerville', css: "'Libre Baskerville', serif" },
+  { value: 'cormorant-garamond', label: 'Cormorant Garamond', css: "'Cormorant Garamond', serif" },
+  { value: 'fira-sans', label: 'Fira Sans', css: "'Fira Sans', sans-serif" },
+  { value: 'jetbrains-mono', label: 'JetBrains Mono', css: "'JetBrains Mono', monospace" },
+  { value: 'roboto-slab', label: 'Roboto Slab', css: "'Roboto Slab', serif" },
+  { value: 'ubuntu', label: 'Ubuntu', css: "'Ubuntu', sans-serif" },
+  { value: 'noto-sans', label: 'Noto Sans', css: "'Noto Sans', sans-serif" },
+  { value: 'teko', label: 'Teko', css: "'Teko', sans-serif" },
+] as const;
+
+export const DEFAULT_FONT = 'space-grotesk';
+
+export function getFontCss(value?: string) {
+  return FONT_OPTIONS.find((font) => font.value === value)?.css ?? FONT_OPTIONS.find((font) => font.value === DEFAULT_FONT)!.css;
+}

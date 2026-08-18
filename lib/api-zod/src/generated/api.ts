@@ -21,6 +21,7 @@ export const HealthCheckResponse = zod.object({
  * @summary Get the published AddMatix website content
  */
 export const GetSiteContentResponse = zod.object({
+  "fontFamily": zod.string(),
   "hero": zod.object({
   "eyebrow": zod.string(),
   "headline": zod.string(),
@@ -126,6 +127,7 @@ export const GetAdminOverviewResponse = zod.object({
  * @summary Get editable website content
  */
 export const GetAdminContentResponse = zod.object({
+  "fontFamily": zod.string(),
   "hero": zod.object({
   "eyebrow": zod.string(),
   "headline": zod.string(),
@@ -183,6 +185,7 @@ export const GetAdminContentResponse = zod.object({
  * @summary Replace editable website content
  */
 export const UpdateAdminContentBody = zod.object({
+  "fontFamily": zod.string(),
   "hero": zod.object({
   "eyebrow": zod.string(),
   "headline": zod.string(),
@@ -236,6 +239,7 @@ export const UpdateAdminContentBody = zod.object({
 })
 
 export const UpdateAdminContentResponse = zod.object({
+  "fontFamily": zod.string(),
   "hero": zod.object({
   "eyebrow": zod.string(),
   "headline": zod.string(),

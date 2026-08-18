@@ -2,6 +2,7 @@ import type { InferSelectModel } from "drizzle-orm";
 import type { siteContentTable } from "@workspace/db";
 
 export type HxaContent = {
+  fontFamily: string;
   hero: {
     eyebrow: string;
     headline: string;
@@ -46,6 +47,7 @@ export type HxaContent = {
 };
 
 export const DEFAULT_HXA_CONTENT: HxaContent = {
+  fontFamily: "space-grotesk",
   hero: {
     eyebrow: "AI transformation partner",
     headline: "Make intelligence your unfair advantage.",
@@ -266,5 +268,8 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
 export function contentFromRow(
   row: InferSelectModel<typeof siteContentTable> | undefined,
 ): HxaContent {
-  return (row?.content as HxaContent | undefined) ?? DEFAULT_HXA_CONTENT;
+  return {
+    ...DEFAULT_HXA_CONTENT,
+    ...(row?.content as Partial<HxaContent> | undefined),
+  };
 }
