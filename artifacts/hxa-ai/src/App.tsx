@@ -9,6 +9,7 @@ import ProcessDetailPage from '@/pages/ProcessDetailPage';
 import InsightDetailPage from '@/pages/InsightDetailPage';
 import Admin from '@/pages/Admin';
 import AdminContent from '@/pages/AdminContent';
+import { AdminGate } from '@/components/AdminGate';
 
 const queryClient = new QueryClient();
 
@@ -19,8 +20,8 @@ function Router() {
       <Route path="/services/:serviceId">{(params) => <ServiceDetailPage serviceId={params.serviceId} />}</Route>
       <Route path="/process/:stepId">{(params) => <ProcessDetailPage stepId={params.stepId} />}</Route>
       <Route path="/insights/:postId">{(params) => <InsightDetailPage postId={params.postId} />}</Route>
-      <Route path="/admin" component={Admin} />
-      <Route path="/admin/content" component={AdminContent} />
+      <Route path="/admin">{() => <AdminGate><Admin /></AdminGate>}</Route>
+      <Route path="/admin/content">{() => <AdminGate><AdminContent /></AdminGate>}</Route>
       <Route component={NotFound} />
     </Switch>
   );

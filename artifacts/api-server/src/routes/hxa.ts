@@ -19,6 +19,13 @@ import {
   contentFromRow,
   type HxaContent,
 } from "../lib/hxa-content";
+import {
+  clearAdminSession,
+  hasAdminSession,
+  isAdminCredentials,
+  requireAdmin,
+  setAdminSession,
+} from "../lib/admin-auth";
 
 const router: IRouter = Router();
 
@@ -57,6 +64,26 @@ router.post("/contact-requests", async (req, res): Promise<void> => {
     }),
   );
 });
+
+router.post("/admin/login", (req, res): void => {
+  if (!isAdminCredentials(req.body?.id, req.body?.password)) {
+    res.status(401).json({ error: "Invalid admin credentials" });
+    return;
+  }
+  setAdminSession(res);
+  res.json({ authenticated: true });
+});
+
+router.get("/admin/session", (req, res): void => {
+  res.json({ authenticated: hasAdminSession(req) });
+});
+
+router.post("/admin/logout", (_req, res): void => {
+  clearAdminSession(res);
+  res.json({ authenticated: false });
+});
+
+router.use("/admin", requireAdmin);
 
 router.get("/admin/overview", async (_req, res): Promise<void> => {
   const content = await getOrCreateContent();
