@@ -32,8 +32,8 @@ export default function ServiceDetailPage({ serviceId }: { serviceId: string }) 
     <main className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:px-8 lg:pb-36 lg:pt-24">
       <div className="max-w-4xl">
         <div className="eyebrow">Service / {service.id === 'ai-transformation' ? '01' : service.id === 'software-engineering' ? '02' : '03'}</div>
-        <h1 className="mt-6 font-display text-5xl leading-[.98] tracking-[-.07em] text-[#edf6ff] sm:text-7xl">{service.title}</h1>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-[#9aacc2]">{service.description}</p>
+        <h1 className="mt-5 font-display text-3xl leading-tight tracking-[-.05em] text-[#8fa9c5] sm:text-5xl">{service.title}</h1>
+        <p className="mt-8 max-w-5xl border-l-2 border-[#6faef2] pl-5 font-display text-4xl leading-[1.05] tracking-[-.055em] text-[#e8f4ff] sm:pl-7 sm:text-6xl lg:text-7xl">{service.description}</p>
         <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#4f7199]/45 bg-[#0d1b30] px-4 py-2 text-sm text-[#b7d0eb]"><span className="h-2 w-2 rounded-full bg-[#6faef2]" />{service.outcome}</div>
       </div>
       <section className="mt-20">
