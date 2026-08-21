@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Clock3, ExternalLink, Layers3, Mail, MoveUpRight, Orbit, Send, ShieldCheck, Zap } from 'lucide-react';
 import { useMemo, useState, type FormEvent } from 'react';
 import { getGetSiteContentQueryKey, useCreateContactRequest, useGetSiteContent } from '@workspace/api-client-react';
-import { fallbackContent } from '@/lib/content';
+import { getRenderableContent } from '@/lib/content';
 import SiteSkeleton from './SiteSkeleton';
 import { PublicNav } from '@/components/PublicNav';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -60,7 +60,7 @@ function ContactForm({ services }: { services: string[] }) {
 
 export default function Home() {
   const query = useGetSiteContent({ query: { queryKey: getGetSiteContentQueryKey() } });
-  const content = query.data ?? fallbackContent;
+  const content = getRenderableContent(query.data);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeCase, setActiveCase] = useState(0);
   const services = useMemo(() => content.services.map((service) => service.title), [content.services]);

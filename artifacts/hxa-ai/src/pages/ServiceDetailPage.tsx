@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import { getGetSiteContentQueryKey, useGetSiteContent, type SiteContent } from '@workspace/api-client-react';
 import { BrandMark } from '@/components/BrandMark';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { fallbackContent } from '@/lib/content';
+import { getRenderableContent } from '@/lib/content';
 
 function DetailGroup({ group }: { group: NonNullable<SiteContent['services'][number]['detailGroups']>[number] }) {
   return <div className="rounded-2xl border border-[#456485]/35 bg-[#0d192b]/70 p-6 sm:p-8">
@@ -16,7 +16,7 @@ function DetailGroup({ group }: { group: NonNullable<SiteContent['services'][num
 
 export default function ServiceDetailPage({ serviceId }: { serviceId: string }) {
   const query = useGetSiteContent({ query: { queryKey: getGetSiteContentQueryKey() } });
-  const content = query.data ?? fallbackContent;
+  const content = getRenderableContent(query.data);
   const service = content.services.find((item) => item.id === serviceId);
 
   if (!service) {

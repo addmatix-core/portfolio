@@ -44,3 +44,24 @@ export const fallbackContent: SiteContent = {
   techStack: ['Azure AI', 'AWS', 'Databricks', 'Snowflake', 'OpenAI', 'Anthropic', 'dbt', 'Kubernetes'],
   process: ['See the signal', 'Shape the ambition', 'Build the first proof', 'Scale what works'],
 };
+
+export function getRenderableContent(value: unknown): SiteContent {
+  if (!value || typeof value !== 'object') return fallbackContent;
+
+  const candidate = value as Partial<SiteContent>;
+  if (
+    !candidate.hero ||
+    !Array.isArray(candidate.stats) ||
+    !Array.isArray(candidate.services) ||
+    !Array.isArray(candidate.caseStudies) ||
+    !Array.isArray(candidate.testimonials) ||
+    !Array.isArray(candidate.faqs) ||
+    !Array.isArray(candidate.posts) ||
+    !Array.isArray(candidate.techStack) ||
+    !Array.isArray(candidate.process)
+  ) {
+    return fallbackContent;
+  }
+
+  return value as SiteContent;
+}
