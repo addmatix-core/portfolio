@@ -3,13 +3,21 @@ import { useState, type ReactNode } from 'react';
 import { signOut } from 'firebase/auth';
 import { Link, useLocation } from 'wouter';
 import { BrandMark } from './BrandMark';
-import { firebaseAuth } from '@/lib/firebase';
+import { getFirebaseAuth } from '@/lib/firebase';
 
 export function AdminShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [location, navigate] = useLocation();
   const items = [{ href: '/admin', label: 'Overview', icon: LayoutDashboard }, { href: '/admin/content', label: 'Site content', icon: FilePenLine }];
-  const logout = async () => { await Promise.all([fetch('/api/admin/logout', { method: 'POST', credentials: 'include' }), signOut(firebaseAuth)]); navigate('/admin'); };
+  const logout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' });
+    try {
+      await signOut(getFirebaseAuth());
+    } catch {
+      // The server session is already cleared even if Firebase is unavailable.
+    }
+    navigate('/admin');
+  };
   return <div className="min-h-[100dvh] bg-[#0a1323] text-[#dbeaff]">
     <aside className={`fixed inset-y-0 left-0 z-30 w-64 border-r border-[#3f5b7e]/35 bg-[#0b1629] px-5 py-6 transition-transform md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="flex items-center justify-between"><BrandMark admin /><button onClick={() => setOpen(false)} data-testid="button-close-sidebar" className="rounded p-1 text-[#7e97b7] md:hidden"><X className="h-5 w-5" /></button></div>

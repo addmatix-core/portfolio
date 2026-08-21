@@ -2,7 +2,7 @@ import { LockKeyhole, LogIn } from 'lucide-react';
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { BrandMark } from '@/components/BrandMark';
-import { firebaseAuth } from '@/lib/firebase';
+import { getFirebaseAuth } from '@/lib/firebase';
 
 export function AdminLogin({ onAuthenticated }: { onAuthenticated: () => void }) {
   const [email, setEmail] = useState('');
@@ -15,6 +15,7 @@ export function AdminLogin({ onAuthenticated }: { onAuthenticated: () => void })
     setError('');
     setPending(true);
     try {
+      const firebaseAuth = getFirebaseAuth();
       const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);
       const idToken = await credential.user.getIdToken();
       const response = await fetch('/api/admin/login', {
