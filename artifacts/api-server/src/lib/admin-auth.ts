@@ -1,11 +1,33 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import type { NextFunction, Request, Response } from "express";
+import { cert, getApps, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 
 const COOKIE_NAME = "addmatix_admin";
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
-const ADMIN_ID = process.env.ADMIN_ID ?? "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "admin@803";
 const SESSION_SECRET = process.env.SESSION_SECRET ?? "addmatix-development-session-secret";
+const ADMIN_EMAIL_ALLOWLIST = new Set(
+  (process.env.FIREBASE_ADMIN_EMAIL_ALLOWLIST ?? "")
+    .split(",")
+    .map((email) => email.trim().toLowerCase())
+    .filter(Boolean),
+);
+
+function firebaseAuth() {
+  if (!getApps().length) {
+    const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+    if (!serviceAccountJson) {
+      throw new Error("FIREBASE_SERVICE_ACCOUNT_JSON is required for admin authentication.");
+    }
+
+    initializeApp({
+      credential: cert(JSON.parse(serviceAccountJson)),
+      projectId: process.env.FIREBASE_PROJECT_ID,
+    });
+  }
+
+  return getAuth();
+}
 
 function signature(payload: string) {
   return createHmac("sha256", SESSION_SECRET).update(payload).digest("base64url");
@@ -30,18 +52,17 @@ function validSession(request: Request) {
   return Number(expiresAt) > Date.now();
 }
 
-function sameSecret(value: string, expected: string) {
-  const provided = Buffer.from(value);
-  const target = Buffer.from(expected);
-  return provided.length === target.length && timingSafeEqual(provided, target);
+export async function verifyFirebaseAdminToken(idToken: unknown) {
+  if (typeof idToken !== "string" || !idToken) return null;
+
+  const decodedToken = await firebaseAuth().verifyIdToken(idToken);
+  const email = decodedToken.email?.trim().toLowerCase();
+  if (!email || !ADMIN_EMAIL_ALLOWLIST.has(email)) return null;
+  return email;
 }
 
-export function isAdminCredentials(id: unknown, password: unknown) {
-  return typeof id === "string" && typeof password === "string" && sameSecret(id, ADMIN_ID) && sameSecret(password, ADMIN_PASSWORD);
-}
-
-export function setAdminSession(response: Response) {
-  const payload = `${ADMIN_ID}:${Date.now() + SESSION_TTL_MS}`;
+export function setAdminSession(response: Response, email: string) {
+  const payload = `${email}:${Date.now() + SESSION_TTL_MS}`;
   const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
   response.setHeader("Set-Cookie", `${COOKIE_NAME}=${encodeURIComponent(`${payload}.${signature(payload)}`)}; HttpOnly; Path=/api; SameSite=Lax${secure}; Max-Age=${SESSION_TTL_MS / 1000}`);
 }

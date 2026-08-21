@@ -1,9 +1,11 @@
 import { LockKeyhole, LogIn } from 'lucide-react';
 import { useState } from 'react';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { BrandMark } from '@/components/BrandMark';
+import { firebaseAuth } from '@/lib/firebase';
 
 export function AdminLogin({ onAuthenticated }: { onAuthenticated: () => void }) {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
@@ -13,13 +15,19 @@ export function AdminLogin({ onAuthenticated }: { onAuthenticated: () => void })
     setError('');
     setPending(true);
     try {
+      const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const idToken = await credential.user.getIdToken();
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({ idToken }),
       });
-      if (!response.ok) throw new Error('Invalid ID or password.');
+      if (!response.ok) {
+        await signOut(firebaseAuth);
+        const body = await response.json().catch(() => null) as { error?: string } | null;
+        throw new Error(body?.error ?? 'Unable to sign in.');
+      }
       onAuthenticated();
     } catch (loginError) {
       setError(loginError instanceof Error ? loginError.message : 'Unable to sign in.');
@@ -33,7 +41,7 @@ export function AdminLogin({ onAuthenticated }: { onAuthenticated: () => void })
       <BrandMark admin />
       <div className="mt-12"><div className="eyebrow">Private workspace</div><h1 className="mt-3 font-display text-4xl tracking-[-.06em]">Admin sign in</h1><p className="mt-3 text-sm leading-6 text-[#8fa5bd]">Manage the words and information published across AddMatix.</p></div>
       <form onSubmit={submit} className="mt-8 space-y-5">
-        <label className="block"><span className="mb-2 block text-xs uppercase tracking-[.14em] text-[#7d97b7]">Admin ID</span><div className="relative"><LockKeyhole className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-[#6d8bad]" /><input required autoComplete="username" value={id} onChange={(event) => setId(event.target.value)} className="w-full rounded-lg border border-[#415c7c]/60 bg-[#0b172a] py-3 pl-10 pr-3 text-sm text-[#ddecff] outline-none focus:border-[#6caffc]" /></div></label>
+        <label className="block"><span className="mb-2 block text-xs uppercase tracking-[.14em] text-[#7d97b7]">Email</span><div className="relative"><LockKeyhole className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-[#6d8bad]" /><input required type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-lg border border-[#415c7c]/60 bg-[#0b172a] py-3 pl-10 pr-3 text-sm text-[#ddecff] outline-none focus:border-[#6caffc]" /></div></label>
         <label className="block"><span className="mb-2 block text-xs uppercase tracking-[.14em] text-[#7d97b7]">Password</span><input required type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} className="w-full rounded-lg border border-[#415c7c]/60 bg-[#0b172a] px-3 py-3 text-sm text-[#ddecff] outline-none focus:border-[#6caffc]" /></label>
         {error && <p role="alert" className="rounded-lg border border-[#d86d7b]/35 bg-[#301a28] px-3 py-2 text-sm text-[#ffb6bf]">{error}</p>}
         <button disabled={pending} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#4286f5] px-4 py-3 text-sm font-semibold text-[#071226] transition-colors hover:bg-[#83bdff] disabled:opacity-50"><LogIn className="h-4 w-4" />{pending ? 'Signing in…' : 'Sign in'}</button>

@@ -22,9 +22,9 @@ import {
 import {
   clearAdminSession,
   hasAdminSession,
-  isAdminCredentials,
   requireAdmin,
   setAdminSession,
+  verifyFirebaseAdminToken,
 } from "../lib/admin-auth";
 
 const router: IRouter = Router();
@@ -65,13 +65,20 @@ router.post("/contact-requests", async (req, res): Promise<void> => {
   );
 });
 
-router.post("/admin/login", (req, res): void => {
-  if (!isAdminCredentials(req.body?.id, req.body?.password)) {
-    res.status(401).json({ error: "Invalid admin credentials" });
+router.post("/admin/login", async (req, res): Promise<void> => {
+  try {
+    const email = await verifyFirebaseAdminToken(req.body?.idToken);
+    if (!email) {
+      res.status(403).json({ error: "This Firebase account is not authorized for the admin panel." });
+      return;
+    }
+    setAdminSession(res, email);
+    res.json({ authenticated: true, email });
+  } catch (error) {
+    req.log.warn({ err: error }, "Firebase admin authentication failed");
+    res.status(401).json({ error: "Unable to verify Firebase sign-in." });
     return;
   }
-  setAdminSession(res);
-  res.json({ authenticated: true });
 });
 
 router.get("/admin/session", (req, res): void => {
