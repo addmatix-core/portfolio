@@ -6,12 +6,6 @@ import { getAuth } from "firebase-admin/auth";
 const COOKIE_NAME = "addmatix_admin";
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
 const SESSION_SECRET = process.env.SESSION_SECRET ?? "addmatix-development-session-secret";
-const ADMIN_EMAIL_ALLOWLIST = new Set(
-  (process.env.FIREBASE_ADMIN_EMAIL_ALLOWLIST ?? "")
-    .split(",")
-    .map((email) => email.trim().toLowerCase())
-    .filter(Boolean),
-);
 
 function firebaseAuth() {
   if (!getApps().length) {
@@ -57,8 +51,7 @@ export async function verifyFirebaseAdminToken(idToken: unknown) {
 
   const decodedToken = await firebaseAuth().verifyIdToken(idToken);
   const email = decodedToken.email?.trim().toLowerCase();
-  if (!email || !ADMIN_EMAIL_ALLOWLIST.has(email)) return null;
-  return email;
+  return email ?? null;
 }
 
 export function setAdminSession(response: Response, email: string) {
