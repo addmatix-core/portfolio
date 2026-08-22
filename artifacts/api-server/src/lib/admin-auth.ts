@@ -1,27 +1,10 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import type { NextFunction, Request, Response } from "express";
-import { cert, getApps, initializeApp } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
+import { firebaseAuth } from "./firebase-admin";
 
 const COOKIE_NAME = "addmatix_admin";
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
 const SESSION_SECRET = process.env.SESSION_SECRET ?? "addmatix-development-session-secret";
-
-function firebaseAuth() {
-  if (!getApps().length) {
-    const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
-    if (!serviceAccountJson) {
-      throw new Error("FIREBASE_SERVICE_ACCOUNT_JSON is required for admin authentication.");
-    }
-
-    initializeApp({
-      credential: cert(JSON.parse(serviceAccountJson)),
-      projectId: process.env.FIREBASE_PROJECT_ID,
-    });
-  }
-
-  return getAuth();
-}
 
 function signature(payload: string) {
   return createHmac("sha256", SESSION_SECRET).update(payload).digest("base64url");

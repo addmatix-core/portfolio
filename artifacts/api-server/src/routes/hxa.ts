@@ -1,5 +1,5 @@
 import { Router, type IRouter } from "express";
-import { desc, eq, sql } from "drizzle-orm";
+import { Timestamp } from "firebase-admin/firestore";
 import {
   CreateContactRequestBody,
   CreateContactRequestResponse,
@@ -10,15 +10,11 @@ import {
   UpdateAdminContentResponse,
 } from "@workspace/api-zod";
 import {
-  contactRequestsTable,
-  db,
-  siteContentTable,
-} from "@workspace/db";
-import {
   DEFAULT_HXA_CONTENT,
-  contentFromRow,
+  contentFromData,
   type HxaContent,
 } from "../lib/hxa-content";
+import { firestore } from "../lib/firebase-admin";
 import {
   clearAdminSession,
   hasAdminSession,
@@ -30,14 +26,15 @@ import {
 const router: IRouter = Router();
 
 async function getOrCreateContent(): Promise<HxaContent> {
-  const [row] = await db.select().from(siteContentTable).limit(1);
-  if (row) return contentFromRow(row);
+  const contentRef = firestore().collection("site_content").doc("main");
+  const snapshot = await contentRef.get();
+  if (snapshot.exists) return contentFromData(snapshot.data()?.content);
 
-  const [created] = await db
-    .insert(siteContentTable)
-    .values({ content: DEFAULT_HXA_CONTENT })
-    .returning();
-  return contentFromRow(created);
+  await contentRef.set({
+    content: DEFAULT_HXA_CONTENT,
+    updatedAt: Timestamp.now(),
+  });
+  return contentFromData(DEFAULT_HXA_CONTENT);
 }
 
 router.get("/site-content", async (_req, res): Promise<void> => {
@@ -53,14 +50,20 @@ router.post("/contact-requests", async (req, res): Promise<void> => {
     return;
   }
 
-  const [created] = await db
-    .insert(contactRequestsTable)
-    .values(parsed.data)
-    .returning();
+  const createdAt = Timestamp.now();
+  const id = Date.now();
+  await firestore().collection("contact_requests").doc(String(id)).set({
+    ...parsed.data,
+    id,
+    status: "new",
+    createdAt,
+  });
   res.status(201).json(
     CreateContactRequestResponse.parse({
-      ...created,
-      createdAt: created.createdAt.toISOString(),
+      ...parsed.data,
+      id,
+      status: "new",
+      createdAt: createdAt.toDate().toISOString(),
     }),
   );
 });
@@ -94,25 +97,31 @@ router.use("/admin", requireAdmin);
 
 router.get("/admin/overview", async (_req, res): Promise<void> => {
   const content = await getOrCreateContent();
-  const latest = await db
-    .select()
-    .from(contactRequestsTable)
-    .orderBy(desc(contactRequestsTable.createdAt))
-    .limit(5);
-  const [countRow] = await db
-    .select({ count: sql<number>`count(*)` })
-    .from(contactRequestsTable);
+  const contacts = firestore().collection("contact_requests");
+  const [latestSnapshot, totalSnapshot] = await Promise.all([
+    contacts.orderBy("createdAt", "desc").limit(5).get(),
+    contacts.count().get(),
+  ]);
 
   res.json(
     GetAdminOverviewResponse.parse({
       contentSections: 10,
       serviceCount: content.services.length,
       caseStudyCount: content.caseStudies.length,
-      inquiryCount: Number(countRow?.count ?? 0),
-      latestInquiries: latest.map((item) => ({
-        ...item,
-        createdAt: item.createdAt.toISOString(),
-      })),
+       inquiryCount: totalSnapshot.data().count,
+       latestInquiries: latestSnapshot.docs.map((doc) => {
+         const data = doc.data();
+         return {
+           id: Number(data.id ?? doc.id),
+           name: String(data.name ?? ""),
+           email: String(data.email ?? ""),
+           company: String(data.company ?? ""),
+           service: String(data.service ?? ""),
+           message: String(data.message ?? ""),
+           status: String(data.status ?? "new"),
+           createdAt: (data.createdAt as Timestamp).toDate().toISOString(),
+         };
+       }),
     }),
   );
 });
@@ -130,21 +139,11 @@ router.put("/admin/content", async (req, res): Promise<void> => {
     return;
   }
 
-  const [current] = await db.select().from(siteContentTable).limit(1);
-  let saved;
-  if (current) {
-    [saved] = await db
-      .update(siteContentTable)
-      .set({ content: parsed.data })
-      .where(eq(siteContentTable.id, current.id))
-      .returning();
-  } else {
-    [saved] = await db
-      .insert(siteContentTable)
-      .values({ content: parsed.data })
-      .returning();
-  }
-  res.json(UpdateAdminContentResponse.parse(contentFromRow(saved)));
+  await firestore().collection("site_content").doc("main").set({
+    content: parsed.data,
+    updatedAt: Timestamp.now(),
+  }, { merge: true });
+  res.json(UpdateAdminContentResponse.parse(contentFromData(parsed.data)));
 });
 
 export default router;

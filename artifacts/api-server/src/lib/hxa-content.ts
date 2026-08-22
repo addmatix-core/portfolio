@@ -1,6 +1,3 @@
-import type { InferSelectModel } from "drizzle-orm";
-import type { siteContentTable } from "@workspace/db";
-
 export type HxaContent = {
   fontFamily: string;
   hero: {
@@ -265,11 +262,9 @@ export const DEFAULT_HXA_CONTENT: HxaContent = {
   ],
 };
 
-export function contentFromRow(
-  row: InferSelectModel<typeof siteContentTable> | undefined,
-): HxaContent {
+export function contentFromData(data: unknown): HxaContent {
   return {
     ...DEFAULT_HXA_CONTENT,
-    ...(row?.content as Partial<HxaContent> | undefined),
+    ...(data as Partial<HxaContent> | undefined),
   };
 }
