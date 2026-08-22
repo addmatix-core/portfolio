@@ -225,6 +225,9 @@ importers:
 
   artifacts/hxa-ai:
     dependencies:
+      '@workspace/api-server':
+        specifier: workspace:*
+        version: link:../api-server
       firebase:
         specifier: ^12.18.0
         version: 12.18.0

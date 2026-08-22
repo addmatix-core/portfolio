@@ -75,6 +75,7 @@
     "zod": "catalog:"
   },
   "dependencies": {
+    "@workspace/api-server": "workspace:*",
     "firebase": "^12.18.0"
   }
 }
